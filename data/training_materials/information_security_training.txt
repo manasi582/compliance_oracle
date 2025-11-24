@@ -1,0 +1,26 @@
+Information Security & Data Protection Training
+
+All employees are responsible for safeguarding company information and digital assets.
+
+1. Passwords & Authentication  
+   - Use unique, strong passwords with at least 12 characters.  
+   - Enable multi-factor authentication (MFA) wherever possible.  
+
+2. Email & Phishing Awareness  
+   - Never click links or attachments from unknown senders.  
+   - Forward suspicious emails to security@company.com.
+
+3. Device & Network Security  
+   - Lock your system when unattended.  
+   - Only use company-approved cloud storage.  
+   - Remote employees must use the VPN when connecting to internal systems.
+
+4. Data Handling  
+   - Store sensitive data only on encrypted drives.  
+   - Delete unused confidential files regularly.
+
+5. Incident Response  
+   - Immediately report suspected breaches to the IT Security team.  
+   - Follow provided recovery and reset procedures.
+
+Failure to comply may result in disciplinary action or access suspension.

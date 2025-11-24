@@ -1,0 +1,105 @@
+{
+  "dataset": "ComplianceOracle IT Support FAQs",
+  "version": "1.0",
+  "last_updated": "2025-11-24",
+  "questions": [
+    {
+      "id": "it-001",
+      "category": "IT",
+      "question": "How do I reset my domain password?",
+      "answer": "Use the Password Self-Service portal or contact IT Helpdesk at it-support@company.com. Ensure your new password meets complexity standards.",
+      "tags": ["password", "it helpdesk"]
+    },
+    {
+      "id": "it-002",
+      "category": "IT",
+      "question": "Can I install new software on my laptop?",
+      "answer": "Only IT-approved software from the company catalog may be installed. Submit a request via the IT service desk for new applications.",
+      "tags": ["software", "installation"]
+    },
+    {
+      "id": "it-003",
+      "category": "IT",
+      "question": "What should I do if I suspect a phishing email?",
+      "answer": "Do not click on any links. Report the email immediately through the ‘Report Phishing’ button in Outlook or contact the Security Operations Team.",
+      "tags": ["phishing", "security"]
+    },
+    {
+      "id": "it-004",
+      "category": "IT",
+      "question": "Are USB drives allowed on company devices?",
+      "answer": "Personal USB drives are not permitted. Use only encrypted company-issued drives for data transfer.",
+      "tags": ["usb", "data security"]
+    },
+    {
+      "id": "it-005",
+      "category": "IT",
+      "question": "What are the password complexity requirements?",
+      "answer": "Passwords must be at least 12 characters long and include a mix of uppercase, lowercase, numbers, and symbols. Passwords expire every 90 days.",
+      "tags": ["password", "security"]
+    },
+    {
+      "id": "it-006",
+      "category": "IT",
+      "question": "How do I connect to the company VPN?",
+      "answer": "Download the VPN client from the IT portal. Use your domain credentials and multi-factor authentication to log in securely.",
+      "tags": ["vpn", "remote access"]
+    },
+    {
+      "id": "it-007",
+      "category": "IT",
+      "question": "Can I access office files from home?",
+      "answer": "Yes, access is available through the secure VPN. Ensure you follow data security guidelines while working remotely.",
+      "tags": ["remote work", "vpn"]
+    },
+    {
+      "id": "it-008",
+      "category": "IT",
+      "question": "What is the company policy on BYOD (Bring Your Own Device)?",
+      "answer": "Personal devices may be used only if enrolled in the company’s Mobile Device Management (MDM) system and meet encryption requirements.",
+      "tags": ["byod", "mdm"]
+    },
+    {
+      "id": "it-009",
+      "category": "IT",
+      "question": "How often should I update antivirus software?",
+      "answer": "Antivirus must update automatically. If disabled, contact IT immediately to restore protection.",
+      "tags": ["antivirus", "protection"]
+    },
+    {
+      "id": "it-010",
+      "category": "IT",
+      "question": "What should I do if I lose my company laptop?",
+      "answer": "Report the loss immediately to IT security. The device will be remotely locked and wiped to prevent data breaches.",
+      "tags": ["device loss", "incident response"]
+    },
+    {
+      "id": "it-011",
+      "category": "IT",
+      "question": "Are company emails monitored?",
+      "answer": "Yes, email and internet activity may be monitored for compliance and data protection in accordance with company policy.",
+      "tags": ["email", "compliance"]
+    },
+    {
+      "id": "it-012",
+      "category": "IT",
+      "question": "Can I share company data through personal email?",
+      "answer": "No, sharing corporate data via personal accounts is strictly prohibited and may lead to disciplinary action.",
+      "tags": ["email", "data protection"]
+    },
+    {
+      "id": "it-013",
+      "category": "IT",
+      "question": "How is data backed up?",
+      "answer": "Critical business data is automatically backed up to secure company servers daily. Do not store work files only on local drives.",
+      "tags": ["backup", "data storage"]
+    },
+    {
+      "id": "it-014",
+      "category": "IT",
+      "question": "How do I request access to a restricted folder?",
+      "answer": "Submit an access request through the IT Service Desk, specifying folder path, justification, and manager approval.",
+      "tags": ["access", "permissions"]
+    }
+  ]
+}

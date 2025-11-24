@@ -1,0 +1,135 @@
+{
+  "dataset": "ComplianceOracle FAQs",
+  "version": "1.1",
+  "last_updated": "2025-11-24",
+  "questions": [
+    {
+      "id": "faq-hr-009",
+      "category": "HR",
+      "question": "How many annual leaves can I carry forward?",
+      "answer": "Employees may carry forward up to 30 days of earned leave into the next calendar year, subject to manager approval.",
+      "tags": ["leave", "earned leave", "carry forward"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-hr-010",
+      "category": "HR",
+      "question": "Can I take a personal day off without using my casual leave?",
+      "answer": "Yes, one personal day is permitted per calendar year without deducting from your casual leave balance, subject to manager approval.",
+      "tags": ["personal day", "leave", "hr policy"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-hr-011",
+      "category": "HR",
+      "question": "Are part-time employees eligible for company benefits?",
+      "answer": "Part-time employees working at least 20 hours per week for 6 months are eligible for prorated benefits, including health insurance and training reimbursements.",
+      "tags": ["part-time", "benefits", "eligibility"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-hr-012",
+      "category": "HR",
+      "question": "What is the employee referral bonus policy?",
+      "answer": "When you refer a candidate who completes 3 months of employment, you receive a referral bonus of ₹15,000, subject to tax and managerial approval.",
+      "tags": ["referral bonus", "recruiting", "employee referral"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-hr-013",
+      "category": "HR",
+      "question": "How do I apply for a training reimbursement?",
+      "answer": "Submit a reimbursement request via the HR portal with the course receipt and approval letter before starting the training. The company reimburses up to 50% of fees after successful completion.",
+      "tags": ["training", "reimbursement", "professional development"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-it-009",
+      "category": "IT",
+      "question": "What are the minimum password requirements?",
+      "answer": "Passwords must be at least 12 characters long, include uppercase and lowercase letters, numbers, and a special character. Passwords expire every 90 days.",
+      "tags": ["password", "security", "it policy"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-it-010",
+      "category": "IT",
+      "question": "Can I use my personal mobile device for work emails?",
+      "answer": "Yes, only if your device is enrolled in the company’s Mobile Device Management (MDM) system and meets encryption and remote-wipe standards.",
+      "tags": ["mobile", "BYOD", "mdm"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-it-011",
+      "category": "IT",
+      "question": "How often should I update my antivirus software?",
+      "answer": "Antivirus software must be updated at least once per week, and full system scans must be scheduled monthly.",
+      "tags": ["antivirus", "security", "end-point"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-it-012",
+      "category": "IT",
+      "question": "What should I do if I lose my company laptop?",
+      "answer": "Immediately report the loss to the IT security team, change all passwords, and enable remote wipe if supported. A replacement will be arranged after incident review.",
+      "tags": ["laptop", "security incident", "device loss"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-privacy-009",
+      "category": "Data Privacy",
+      "question": "Is employee biometric data collected?",
+      "answer": "Yes, biometric data (such as fingerprint scans) may be collected for access control. Use of this data is governed by the company’s biometric and privacy policy.",
+      "tags": ["biometric", "data collection", "access control"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-privacy-010",
+      "category": "Data Privacy",
+      "question": "Can I request deletion of my personal data?",
+      "answer": "You may request data deletion by submitting a data-erasure request. If data is required for compliance or statutory purposes, it will be anonymized instead.",
+      "tags": ["data deletion", "erasure", "privacy"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-privacy-011",
+      "category": "Data Privacy",
+      "question": "How long are CCTV recordings retained?",
+      "answer": "CCTV footage is retained for 30 days for security purposes and then automatically overwritten unless required for investigation.",
+      "tags": ["cctv", "retention", "security"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-fin-009",
+      "category": "Finance",
+      "question": "Is GST included in reimbursement claims?",
+      "answer": "Yes. GST can be claimed if the original receipt shows valid GST registration and it is within policy limits.",
+      "tags": ["gst", "expenses", "reimbursement"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-fin-010",
+      "category": "Finance",
+      "question": "Are international roaming charges reimbursed?",
+      "answer": "Only business-related roaming charges from corporate travel are reimbursed, subject to manager approval and corporate cap limits.",
+      "tags": ["roaming", "travel", "expenses"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-fin-011",
+      "category": "Finance",
+      "question": "What is the procedure for petty cash claims?",
+      "answer": "Employees may submit petty-cash requests up to ₹5,000 using the petty-cash voucher form. All expenses must be certified by a manager and backed by receipts.",
+      "tags": ["petty cash", "voucher", "finance"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-fin-012",
+      "category": "Finance",
+      "question": "How are bonus payouts calculated?",
+      "answer": "Bonus payouts are based on individual performance rating and company eligibility criteria, and are paid within 45 days after the year-end audit.",
+      "tags": ["bonus", "payout", "performance"],
+      "source": "synthetic_demo"
+    }
+  ]
+}

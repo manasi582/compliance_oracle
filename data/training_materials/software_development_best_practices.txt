@@ -1,0 +1,28 @@
+Software Development Best Practices
+
+This guide defines our engineering standards and ensures consistency across teams.
+
+1. Version Control  
+   - Use Git with feature-branch workflows.  
+   - All pull requests require at least one peer review.
+
+2. Code Quality & Testing  
+   - Write clean, modular, and reusable code.  
+   - Maintain at least 80% unit test coverage.
+
+3. Secure Coding  
+   - Follow OWASP Top 10 security guidelines.  
+   - Never hardcode API keys, tokens, or credentials.  
+   - Validate all user input to prevent injection attacks.
+
+4. Documentation  
+   - Update README files for every new module.  
+   - Include code comments for complex logic sections.
+
+5. DevOps & Deployment  
+   - Use CI/CD pipelines for all builds.  
+   - Monitor logs post-deployment for anomalies.
+
+6. Collaboration  
+   - Communicate code changes in team stand-ups.  
+   - Respect code ownership boundaries and review etiquette.

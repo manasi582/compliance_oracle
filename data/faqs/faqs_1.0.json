@@ -1,0 +1,266 @@
+{
+  "dataset": "ComplianceOracle FAQs",
+  "version": "1.0",
+  "last_updated": "2025-11-24",
+  "questions": [
+    {
+      "id": "faq-hr-001",
+      "category": "HR",
+      "question": "How many casual leaves can I take in a year?",
+      "answer": "Employees are entitled to 12 casual leave days per calendar year. Casual leave cannot be carried forward.",
+      "tags": ["leave", "casual", "hr"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-hr-002",
+      "category": "HR",
+      "question": "What is the standard office timing?",
+      "answer": "Standard business hours are 9:00 AM to 6:00 PM, Monday to Friday, with a 1-hour lunch break.",
+      "tags": ["work hours", "attendance", "hr"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-hr-003",
+      "category": "HR",
+      "question": "How do I apply for leave?",
+      "answer": "Submit a leave request through the HR portal at least 3 days in advance. Emergency leave should be informed to your manager as soon as possible.",
+      "tags": ["leave", "process", "hrms"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-hr-004",
+      "category": "HR",
+      "question": "Am I eligible for maternity or paternity leave?",
+      "answer": "Maternity and paternity leave are provided as per applicable laws and company policy. Submit supporting documents via the HR portal.",
+      "tags": ["maternity", "paternity", "benefits"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-hr-005",
+      "category": "HR",
+      "question": "Is work from home allowed?",
+      "answer": "Remote work is permitted with prior approval from your manager and HR, subject to business needs and role eligibility.",
+      "tags": ["remote", "wfh", "policy"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-hr-006",
+      "category": "HR",
+      "question": "What is the dress code?",
+      "answer": "Business casual from Monday to Thursday. Casuals are allowed on Fridays. Formal attire is required for client meetings.",
+      "tags": ["dress code", "conduct"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-hr-007",
+      "category": "HR",
+      "question": "How do I mark attendance when working remotely?",
+      "answer": "Mark attendance daily via the HRMS and remain reachable on official channels during core hours.",
+      "tags": ["attendance", "remote", "hrms"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-hr-008",
+      "category": "HR",
+      "question": "What is the notice period for resignation?",
+      "answer": "The standard notice period is 30 days unless specified differently in your contract.",
+      "tags": ["resignation", "exit", "notice period"],
+      "source": "synthetic_demo"
+    },
+
+    {
+      "id": "faq-it-001",
+      "category": "IT",
+      "question": "How do I reset my domain password?",
+      "answer": "Use the Password Self-Service portal or contact the IT helpdesk. Ensure your new password meets complexity rules.",
+      "tags": ["password", "it helpdesk", "account"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-it-002",
+      "category": "IT",
+      "question": "Is personal USB storage allowed on office laptops?",
+      "answer": "Personal USB devices are restricted. Use encrypted, IT-approved media only with prior approval.",
+      "tags": ["usb", "removable media", "security"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-it-003",
+      "category": "IT",
+      "question": "How do I get VPN access?",
+      "answer": "Raise a request in the IT service portal. VPN is granted based on role and security clearance.",
+      "tags": ["vpn", "remote access", "it"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-it-004",
+      "category": "IT",
+      "question": "What should I do if I suspect a phishing email?",
+      "answer": "Do not click links. Report the email via the 'Report Phishing' button or forward to the security team immediately.",
+      "tags": ["phishing", "email", "security"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-it-005",
+      "category": "IT",
+      "question": "Are company emails monitored?",
+      "answer": "Yes. Email and internet usage may be monitored for security and compliance in accordance with company policy.",
+      "tags": ["monitoring", "email", "compliance"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-it-006",
+      "category": "IT",
+      "question": "Can I install software on my laptop?",
+      "answer": "Only IT-approved software from the company catalog may be installed. Raise a request for additional tools.",
+      "tags": ["software", "installation", "endpoint"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-it-007",
+      "category": "IT",
+      "question": "How is data backed up?",
+      "answer": "Critical data is backed up to secure cloud storage as per the backup schedule. Store project files on approved drives.",
+      "tags": ["backup", "storage", "governance"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-it-008",
+      "category": "IT",
+      "question": "What is the policy on BYOD (Bring Your Own Device)?",
+      "answer": "BYOD is allowed only with MDM enrollment and adherence to security controls. Access is limited to approved apps.",
+      "tags": ["byod", "mobile", "mdm"],
+      "source": "synthetic_demo"
+    },
+
+    {
+      "id": "faq-privacy-001",
+      "category": "Data Privacy",
+      "question": "What personal data does the company collect?",
+      "answer": "We collect identification and employment data necessary for HR, payroll, security, and statutory compliance.",
+      "tags": ["personal data", "collection", "privacy"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-privacy-002",
+      "category": "Data Privacy",
+      "question": "How can I request access to my personal data?",
+      "answer": "Submit a Data Subject Access Request (DSAR) via the privacy portal or contact the Data Protection Officer.",
+      "tags": ["dsar", "access request", "rights"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-privacy-003",
+      "category": "Data Privacy",
+      "question": "Do we share employee data with third parties?",
+      "answer": "Data may be shared with vetted processors (e.g., payroll, benefits) under contractual and legal safeguards.",
+      "tags": ["third parties", "processors", "privacy"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-privacy-004",
+      "category": "Data Privacy",
+      "question": "How long do we retain personal data?",
+      "answer": "Data is retained according to legal requirements and business needs, then securely deleted or anonymized.",
+      "tags": ["retention", "deletion", "privacy"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-privacy-005",
+      "category": "Data Privacy",
+      "question": "Can I withdraw consent for optional data processing?",
+      "answer": "Yes. You may withdraw consent at any time using the privacy portal. Core processing may rely on other legal bases.",
+      "tags": ["consent", "lawful basis", "privacy"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-privacy-006",
+      "category": "Data Privacy",
+      "question": "What is the procedure after a suspected data breach?",
+      "answer": "Report immediately to the security team. Incidents are logged, investigated, and notified per regulatory timelines.",
+      "tags": ["breach", "incident response", "security"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-privacy-007",
+      "category": "Data Privacy",
+      "question": "Is cross-border transfer of data allowed?",
+      "answer": "Cross-border transfers require appropriate safeguards such as SCCs or adequate jurisdiction approvals.",
+      "tags": ["cross-border", "transfer", "safeguards"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-privacy-008",
+      "category": "Data Privacy",
+      "question": "Who is the Data Protection Officer (DPO)?",
+      "answer": "Contact details for the DPO are listed on the privacy portal and policy documents.",
+      "tags": ["dpo", "contact", "privacy"],
+      "source": "synthetic_demo"
+    },
+
+    {
+      "id": "faq-fin-001",
+      "category": "Finance",
+      "question": "What expenses are reimbursable during business travel?",
+      "answer": "Economy travel, local transport, business meals within limits, approved lodging, and work-related connectivity.",
+      "tags": ["reimbursement", "travel", "expenses"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-fin-002",
+      "category": "Finance",
+      "question": "How do I submit an expense claim?",
+      "answer": "Upload itemized receipts in the expense portal within 7 working days of return and route for manager approval.",
+      "tags": ["claims", "receipts", "workflow"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-fin-003",
+      "category": "Finance",
+      "question": "What items are non-reimbursable?",
+      "answer": "Alcohol, personal entertainment, minibar, fines, and any unapproved upgrades are not reimbursable.",
+      "tags": ["non-reimbursable", "policy", "expenses"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-fin-004",
+      "category": "Finance",
+      "question": "Are per-diems available for domestic travel?",
+      "answer": "Yes. Per-diem limits are defined by city class. Refer to the travel policy for current slabs.",
+      "tags": ["per-diem", "domestic", "limits"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-fin-005",
+      "category": "Finance",
+      "question": "Can I claim ride-sharing receipts?",
+      "answer": "Yes, for business trips between approved locations. Attach digital receipts with date and route.",
+      "tags": ["rideshare", "local transport", "claims"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-fin-006",
+      "category": "Finance",
+      "question": "How long does reimbursement take?",
+      "answer": "Approved claims are typically processed within 10 working days.",
+      "tags": ["sla", "payments", "finance"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-fin-007",
+      "category": "Finance",
+      "question": "What is the policy for international travel class?",
+      "answer": "Economy class is standard unless a business justification is pre-approved by management.",
+      "tags": ["air travel", "class", "approval"],
+      "source": "synthetic_demo"
+    },
+    {
+      "id": "faq-fin-008",
+      "category": "Finance",
+      "question": "Can I use a personal card for business expenses?",
+      "answer": "Yes, but claims must include original receipts. Corporate cards should be used where available.",
+      "tags": ["cards", "payment", "claims"],
+      "source": "synthetic_demo"
+    }
+  ]
+}

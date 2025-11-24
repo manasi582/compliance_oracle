@@ -1,0 +1,105 @@
+{
+  "dataset": "ComplianceOracle HR FAQs",
+  "version": "1.2",
+  "last_updated": "2025-11-24",
+  "questions": [
+    {
+      "id": "hr-001",
+      "category": "HR",
+      "question": "How many paid leaves am I entitled to per year?",
+      "answer": "Employees are entitled to 15 days of paid leave annually, in addition to 12 days of casual leave and 10 public holidays.",
+      "tags": ["leave", "paid", "annual"]
+    },
+    {
+      "id": "hr-002",
+      "category": "HR",
+      "question": "Can unused leaves be carried over to the next year?",
+      "answer": "Yes, up to 30 days of earned leave can be carried over to the following calendar year.",
+      "tags": ["leave", "carry forward"]
+    },
+    {
+      "id": "hr-003",
+      "category": "HR",
+      "question": "What is the notice period for resignation?",
+      "answer": "The standard notice period is 30 days for full-time employees, unless otherwise stated in the employment contract.",
+      "tags": ["resignation", "notice period"]
+    },
+    {
+      "id": "hr-004",
+      "category": "HR",
+      "question": "Are employees allowed to work from home?",
+      "answer": "Work-from-home is permitted with prior approval from the reporting manager and HR, based on role and business requirements.",
+      "tags": ["remote work", "wfh"]
+    },
+    {
+      "id": "hr-005",
+      "category": "HR",
+      "question": "Does the company provide health insurance?",
+      "answer": "Yes, all full-time employees are covered under the company’s group health insurance policy, which includes hospitalization and maternity benefits.",
+      "tags": ["benefits", "insurance"]
+    },
+    {
+      "id": "hr-006",
+      "category": "HR",
+      "question": "What is the policy on late attendance?",
+      "answer": "A grace period of 10 minutes is allowed. More than 3 late arrivals per month may result in a formal warning.",
+      "tags": ["attendance", "punctuality"]
+    },
+    {
+      "id": "hr-007",
+      "category": "HR",
+      "question": "How do I apply for leave?",
+      "answer": "Leave requests must be submitted via the HRMS portal at least 3 days in advance, except in case of emergencies.",
+      "tags": ["leave", "hrms"]
+    },
+    {
+      "id": "hr-008",
+      "category": "HR",
+      "question": "What is the dress code policy?",
+      "answer": "Business casual from Monday to Thursday and smart casuals on Fridays. Formal wear is required for client meetings.",
+      "tags": ["dress code", "conduct"]
+    },
+    {
+      "id": "hr-009",
+      "category": "HR",
+      "question": "Does the company support training or certification programs?",
+      "answer": "Yes, employees can apply for upskilling reimbursements. Up to 50% of the cost is reimbursed for approved programs.",
+      "tags": ["training", "reimbursement"]
+    },
+    {
+      "id": "hr-010",
+      "category": "HR",
+      "question": "Can I refer a friend for an open position?",
+      "answer": "Yes, through the Employee Referral Program. A referral bonus is credited once the referred candidate completes 3 months of employment.",
+      "tags": ["referral", "hiring"]
+    },
+    {
+      "id": "hr-011",
+      "category": "HR",
+      "question": "Is there a probation period for new employees?",
+      "answer": "Yes, the probation period is 6 months from the date of joining. It may be extended based on performance review.",
+      "tags": ["probation", "new employees"]
+    },
+    {
+      "id": "hr-012",
+      "category": "HR",
+      "question": "Are interns eligible for company benefits?",
+      "answer": "Interns are not eligible for medical or insurance benefits but may receive a stipend and training certificate.",
+      "tags": ["interns", "benefits"]
+    },
+    {
+      "id": "hr-013",
+      "category": "HR",
+      "question": "How do I raise a grievance with HR?",
+      "answer": "Employees can log grievances through the HR portal or email hr-support@company.com for confidential handling.",
+      "tags": ["grievance", "complaints"]
+    },
+    {
+      "id": "hr-014",
+      "category": "HR",
+      "question": "What is the company’s policy on harassment?",
+      "answer": "The company follows a strict zero-tolerance policy on harassment. Incidents can be reported directly to the Internal Complaints Committee (ICC).",
+      "tags": ["harassment", "policy"]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+Employee Onboarding Guide
+
+Welcome to our organization! This document will help you settle into your new role quickly and confidently.
+
+1. Orientation & Company Overview  
+   - Attend the virtual onboarding session within your first week.  
+   - Review the company mission, values, and core culture principles.
+
+2. IT Setup Checklist  
+   - Collect your system credentials from IT support.  
+   - Enroll your device in the company’s endpoint protection software.  
+   - Set up multi-factor authentication (MFA) for all accounts.
+
+3. HR & Compliance Documents  
+   - Submit all signed HR forms within 48 hours of joining.  
+   - Complete the “Code of Conduct” e-module and “Security Awareness” training within 10 days.
+
+4. Mentorship & Buddy Program  
+   - You’ll be paired with a senior colleague for guidance during your first 90 days.  
+
+5. Important Contacts  
+   - HR Support: hr@company.com  
+   - IT Helpdesk: support@company.com  
+   - Security Team: security@company.com
