@@ -1,3 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
 .env
-.env
-.env
+
+# Logs
+*.log
+
+# Vector Store
+embeddings/chroma/
+
+# RAG Evaluation Outputs
+backend/ragas_metrics.json
+backend/ragas_metrics_improved.json
+backend/output_ragas_ready.csv
+backend/ragas_ready.csv
+data/rag_outputs.csv
+data/debug_dataset.csv

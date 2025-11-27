@@ -3,190 +3,150 @@
 # =====================================================
 
 import os
-import re
-import json
-from pathlib import Path
+import shutil
+import pathlib
 from dotenv import load_dotenv
+from tqdm import tqdm
 
-
-from langchain_community.embeddings import HuggingFaceEmbeddings
-
-from langchain_core.documents import Document
+# LangChain modules
+from langchain_community.document_loaders import DirectoryLoader, TextLoader, PyPDFLoader, UnstructuredWordDocumentLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
-
-load_dotenv()  # to read OPENAI_API_KEY from .env
-
+from langchain_huggingface import HuggingFaceEmbeddings
 
 # -----------------------------------------------------
-# 1️⃣  File Readers
+# Setup environment
 # -----------------------------------------------------
-def read_txt(path: Path) -> str:
-    return path.read_text(encoding="utf-8", errors="ignore")
+project_root = pathlib.Path(__file__).resolve().parent.parent
+load_dotenv(project_root / ".env")
 
-def read_pdf(path: Path) -> str:
-    from pypdf import PdfReader
-    text = []
-    with open(path, "rb") as f:
-        pdf = PdfReader(f)
-        for page in pdf.pages:
-            text.append(page.extract_text() or "")
-    return "\n".join(text)
+PERSIST_DIR = "embeddings/chroma"
+COLLECTION_NAME = "compliance_docs_v2"
+EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
-def read_json_faq(path: Path) -> str:
-    """Flatten JSON Q&A into a readable block of text"""
-    data = json.loads(path.read_text(encoding="utf-8", errors="ignore"))
-    items = data.get("questions", data if isinstance(data, list) else [])
-    blocks = []
-    for it in items:
-        q = it.get("question") or it.get("Question") or ""
-        a = it.get("answer") or it.get("Answer") or ""
-        blocks.append(f"Q: {q}\nA: {a}")
-    return "\n\n---\n\n".join(blocks)
-
+print("✅ Environment initialized.")
+print(f"✅ Using embedding model: {EMBED_MODEL}")
 
 # -----------------------------------------------------
-# 2️⃣  Cleaning & Categorization
+# 1️⃣ Load documents
 # -----------------------------------------------------
-def clean_text(text: str) -> str:
-    text = re.sub(r"[ \t]+", " ", text)
-    text = re.sub(r"\n{3,}", "\n\n", text)
-    return text.strip()
+def load_docs(data_dir="data"):
+    """Loads text, Word, and PDF documents safely from the given directory."""
+    from langchain_community.document_loaders import (
+        TextLoader, PyPDFLoader, UnstructuredWordDocumentLoader
+    )
 
-def infer_category(path: Path) -> str:
-    p = path.as_posix().lower()
-    if "/hr_policies/" in p: return "HR"
-    if "/it_policies/" in p: return "IT"
-    if "/data_priv_manual/" in p: return "Data Privacy"
-    if "/finance_policies/" in p: return "Finance"
-    if "/faqs/" in p: return "FAQ"
-    return "General"
-
-
-# -----------------------------------------------------
-# 3️⃣  Load All Documents
-# -----------------------------------------------------
-def load_all_docs(data_root="data"):
     docs = []
-    for root, _, files in os.walk(data_root):
-        for fname in files:
-            path = Path(root) / fname
-            ext = path.suffix.lower()
-            if ext in [".txt", ".md"]:
-                raw = read_txt(path)
-            elif ext in [".pdf"]:
-                raw = read_pdf(path)
-            elif ext in [".json"]:
-                raw = read_json_faq(path)
-            else:
-                continue  # skip unsupported
+    supported_ext = {".txt", ".pdf", ".docx"}
 
-            text = clean_text(raw)
-            if not text:
-                continue
+    for root, _, files in os.walk(data_dir):
+        for f in files:
+            ext = os.path.splitext(f)[1].lower()
+            path = os.path.join(root, f)
 
-            docs.append({
-                "text": text,
-                "metadata": {
-                    "category": infer_category(path),
-                    "source_file": path.name,
-                    "source_path": str(path.relative_to(Path(data_root)))
-                }
-            })
+            if ext not in supported_ext:
+                continue  # skip unsupported files
+
+            try:
+                if ext == ".txt":
+                    loader = TextLoader(path, encoding="utf-8")
+                elif ext == ".pdf":
+                    loader = PyPDFLoader(path)
+                elif ext == ".docx":
+                    loader = UnstructuredWordDocumentLoader(path)
+
+                loaded_docs = loader.load()
+                if not loaded_docs:
+                    print(f"⚠️ {f} returned 0 docs, skipping.")
+                    continue
+
+                docs.extend(loaded_docs)
+            except Exception as e:
+                print(f"⚠️ Failed to load {f}: {e}")
+
+    if not docs:
+        raise ValueError("❌ No documents loaded. Check your data/source_docs/ folder.")
+
+    print(f"✅ Loaded {len(docs)} documents from {data_dir}")
     return docs
 
 
 # -----------------------------------------------------
-# 4️⃣  Chunking  ✅ (This is where your chunking lives)
+# 2️⃣ Chunk documents
 # -----------------------------------------------------
-def chunk_documents(docs, chunk_size=1000, chunk_overlap=150):
-    splitter = RecursiveCharacterTextSplitter(
+def chunk_docs(docs, chunk_size=800, chunk_overlap=100):
+    """Splits documents into overlapping text chunks for embedding."""
+    text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap,
-        separators=["\n\n", "\n", ". ", " "]
+        separators=["\n\n", "\n", ".", " ", ""]
     )
-    chunked = []
-    for d in docs:
-        for chunk in splitter.split_text(d["text"]):
-            # ✅ Wrap chunks as Document objects
-            chunked.append(
-                Document(
-                    page_content=chunk,
-                    metadata=d["metadata"]
-                )
-            )
-    return chunked
+    chunks = text_splitter.split_documents(docs)
+    return chunks
+
+# -----------------------------------------------------
+# 3️⃣ Build vector index
+# -----------------------------------------------------
+def build_index(chunks, embeddings):
+    """Creates a new Chroma vector store and embeds chunks."""
+    # Clear old Chroma database for a clean build
+    if os.path.exists(PERSIST_DIR):
+        print("🧹 Removing old Chroma database...")
+        shutil.rmtree(PERSIST_DIR)
+
+    print("🏗️ Building new Chroma vector store...")
+    db = Chroma(
+        persist_directory=PERSIST_DIR,
+        collection_name=COLLECTION_NAME,
+        embedding_function=embeddings
+    )
+
+    print(f"📦 Adding {len(chunks)} chunks...")
+    filtered_chunks = [c for c in chunks if c.page_content and c.page_content.strip()]
+
+    if not filtered_chunks:
+        raise ValueError("No valid text chunks to embed.Please check your source docs")
+    
+    db.add_documents(filtered_chunks)
+    print(f"✅Added {len(filtered_chunks)} non-empty chunks.")
 
 
 
 # -----------------------------------------------------
-# 5️⃣  Embedding + Indexing
-# -----------------------------------------------------
-def build_index(chunks, persist_dir="embeddings/chroma"):
-    """
-    Build a local Chroma vector index using HuggingFace sentence-transformers.
-    Works fully offline and shows progress.
-    """
-    from langchain_huggingface import HuggingFaceEmbeddings
-    from langchain_community.embeddings import HuggingFaceEmbeddings
-    from tqdm import tqdm
-
-    print("🧠 Loading local embedding model (all-MiniLM-L6-v2)...")
-    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-
-    print(f"📦 Building vector index at {persist_dir} ...")
-
-    # Create batches to avoid memory spikes
-    batch_size = 200
-    total_batches = (len(chunks) // batch_size) + 1
-    vs = None
-
-    for i in tqdm(range(total_batches), desc="Embedding chunks"):
-        start = i * batch_size
-        end = start + batch_size
-        batch = chunks[start:end]
-        if not batch:
-            continue
-
-        if vs is None:
-            vs = Chroma.from_documents(
-                documents=batch,
-                embedding=embeddings,
-                persist_directory=persist_dir
-            )
-        else:
-            vs.add_documents(batch)
-
-    if vs:
-        if hasattr(vs, "persist_client"):
-            vs.persist_client()
-        elif hasattr(vs, "persist"):
-            vs.persist()
-        print("✅ Local embeddings successfully built and saved to:", persist_dir)
-    else:
-        print("⚠️ No documents were indexed")
-
-        
-    return vs
-
-
-# -----------------------------------------------------
-# 6️⃣  Pipeline Entry Point
+# 4️⃣ Main pipeline
 # -----------------------------------------------------
 def main():
     print("📥 Loading documents...")
-    docs = load_all_docs("data")
+    docs = load_docs(data_dir="data")
     print(f"✅ Loaded {len(docs)} documents")
 
     print("🔪 Chunking documents...")
-    chunks = chunk_documents(docs)
+    chunks = chunk_docs(docs)
     print(f"✅ Created {len(chunks)} chunks")
 
+    print("🧩 Sample chunk preview:")
+    for c in chunks[:3]:
+        print(f"- {c.page_content[:200]!r}")
+
+
     print("🧬 Generating embeddings & building index...")
-    build_index(chunks)
-    print("✅ Embeddings saved to: embeddings/chroma")
+    embeddings = HuggingFaceEmbeddings(model_name=EMBED_MODEL)
 
+    build_index(chunks, embeddings)
 
+    # Verify index metadata
+    db = Chroma(
+        persist_directory=PERSIST_DIR,
+        collection_name=COLLECTION_NAME,
+        embedding_function=embeddings
+    )
+    print(f"📊 Collection Count: {db._collection.count()}")
+    print(f"📋 Metadata: {db._collection.metadata}")
+
+    print("\n✅ Embedding & ingestion complete!")
+
+# -----------------------------------------------------
+# 5️⃣ Run
+# -----------------------------------------------------
 if __name__ == "__main__":
     main()
