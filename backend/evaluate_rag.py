@@ -111,7 +111,7 @@ def create_rag_pipeline():
 # 3️⃣ Prepare Dataset
 # =====================================================
 
-def prepare_dataset(rag_chain, retriever, csv_path, output_path="backend/output_ragas_ready.csv"):
+def prepare_dataset(rag_chain, retriever, csv_path, output_path="backend/output_ragas_ready.csv", dev_mode=False):
     """Fetches contexts + answers and prepares a RAGAS-compatible dataset."""
     if not os.path.exists(csv_path):
         raise FileNotFoundError(f"❌ CSV not found at: {csv_path}")
@@ -125,6 +125,11 @@ def prepare_dataset(rag_chain, retriever, csv_path, output_path="backend/output_
         "Question": "question",
         "Expected_Answer": "ground_truth"
     }, inplace=True)
+
+    # 🧩 Optimization: Slice dataframe EARLY if in dev mode
+    if dev_mode:
+        print(f"⚙️ DEV_MODE: Limiting to top 5 rows for faster generation.")
+        df = df.head(5)
 
     df["contexts"] = [[] for _ in range(len(df))]
     df["answer"] = ""
@@ -174,20 +179,19 @@ def run_ragas(dataset, save_path="backend/ragas_metrics.json", dev_mode=False):
     """Runs RAGAS metrics and saves results."""
     print("\n📊 Running RAGAS evaluation...")
 
-    # 🧩 Limit for dev cycles
-    if dev_mode:
-        dataset = dataset.select(range(min(5, len(dataset))))
-        print("⚙️ DEV_MODE active — evaluating only 5 samples.\n")
-
-    # ✅ use Groq or OpenAI for evaluation (prioritize Groq to avoid quota issues)
-    if os.getenv("GROQ_API_KEY"):
-        from langchain_groq import ChatGroq
-        llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0, api_key=os.getenv("GROQ_API_KEY"))
-        print("🧠 Using Groq for RAGAS evaluation.")
-    elif os.getenv("OPENAI_API_KEY"):
+    # ✅ use OpenAI for evaluation JUDGE (Groq Llama 3 is bad at strict JSON / RAGAS)
+    # RAGAS works best with GPT-4o-mini or GPT-3.5-turbo
+    if os.getenv("OPENAI_API_KEY"):
         from langchain_openai import ChatOpenAI
         llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
-        print("🧠 Using OpenAI for RAGAS evaluation.")
+        print("🧠 Using OpenAI GPT-4o-mini for RAGAS evaluation (Recommended).")
+    elif os.getenv("GROQ_API_KEY"):
+        from langchain_groq import ChatGroq
+        # Llama 3 70b is better for judging than 8b if available, else 8b
+        llm = ChatGroq(model="llama-3.1-70b-versatile", temperature=0, api_key=os.getenv("GROQ_API_KEY"))
+        print("🧠 Using Groq Llama 3.1-70b for RAGAS evaluation (Fallback).")
+    else:
+        raise ValueError("No API Key found for evaluation.")
 
     # ✅ Initialize embeddings for RAGAS to avoid default OpenAI usage
     from langchain_huggingface import HuggingFaceEmbeddings
@@ -199,7 +203,7 @@ def run_ragas(dataset, save_path="backend/ragas_metrics.json", dev_mode=False):
             metrics=[context_precision, faithfulness, context_recall, answer_correctness],
             llm=llm,
             embeddings=embeddings,
-            batch_size=2,
+            batch_size=1, # Reduced to avoid Rate Limits
             raise_exceptions=False
         )
     except Exception as e:
@@ -311,7 +315,7 @@ def main():
 
     # Step 3: Prepare dataset
     try:
-        dataset = prepare_dataset(rag_chain, retriever, EVAL_PATH, OUTPUT_PATH)
+        dataset = prepare_dataset(rag_chain, retriever, EVAL_PATH, OUTPUT_PATH, dev_mode=DEV_MODE)
     except Exception as e:
         print(f"❌ Failed to prepare dataset: {e}")
         return

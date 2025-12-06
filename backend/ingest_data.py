@@ -74,7 +74,7 @@ def load_docs(data_dir="data"):
 # -----------------------------------------------------
 # 2️⃣ Chunk documents
 # -----------------------------------------------------
-def chunk_docs(docs, chunk_size=800, chunk_overlap=100):
+def chunk_docs(docs, chunk_size=1500, chunk_overlap=300):
     """Splits documents into overlapping text chunks for embedding."""
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
